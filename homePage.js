@@ -186,8 +186,11 @@ const styles = StyleSheet.create({
   },
   voiceRecorderIcon: {
     backgroundColor: "midnightblue",
-    borderRadius: 15,
-    padding: 5,
+    borderRadius: 25,
+    height: 50,
+    width: 50,
+    paddingTop: 10,
+    paddingLeft: 10,
   },
   postsContainer: {
     flex: 1,
