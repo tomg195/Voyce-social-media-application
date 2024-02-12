@@ -12,6 +12,7 @@ import {
   TouchableOpacity,
 } from "react-native";
 import HomePage from "./homePage";
+import Profile from "./Profile";
 
 const Stack = createNativeStackNavigator();
 
@@ -24,6 +25,7 @@ export default function App() {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomePage} />
+        <Stack.Screen name="Profile" component={Profile} />
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -33,9 +35,9 @@ const LoginScreen = ({ navigation }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const togglePage = () => {
+  function enterHomePage() {
     navigation.navigate("Home");
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -56,7 +58,7 @@ const LoginScreen = ({ navigation }) => {
         onChangeText={setPassword}
       />
       <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={togglePage}>
+        <TouchableOpacity style={styles.button} onPress={enterHomePage}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>

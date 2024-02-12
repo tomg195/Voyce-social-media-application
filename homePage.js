@@ -14,9 +14,10 @@ import { useNavigation } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
 import PostContainer from "./PostContainer";
+import Profile from "./Profile";
 
-const HomePage = () => {
-  const navigation = useNavigation();
+const HomePage = ({ navigation }) => {
+  const [index, setIndex] = useState(0);
 
   const goBack = () => {
     navigation.goBack();
@@ -26,7 +27,7 @@ const HomePage = () => {
     {
       id: 1,
       screenName: "Darren Pereira",
-      userName: "@Daz_attack",
+      userName: "@Daz_Attack",
       title: "What happened to Liverpool last night?",
       location: "Hounslow, London",
       likes: 5,
@@ -36,14 +37,12 @@ const HomePage = () => {
       id: 2,
       screenName: "Jack Brook",
       userName: "@JB97",
-      title: "Come on you bees",
+      title: "Come on you Bees!!",
       location: "Brentford, London",
       likes: 10,
       comments: 3,
     },
   ];
-
-  const [index, setIndex] = useState(0);
 
   const routes = [
     { key: "home", icon: "home" },
@@ -53,12 +52,19 @@ const HomePage = () => {
     { key: "profile", icon: "account" },
   ];
 
+  const goToProfile = () => {
+    navigation.navigate("Profile");
+  };
+
   const renderScene = BottomNavigation.SceneMap({
     home: () => <View style={styles.tabContent}></View>,
     search: () => <View style={styles.tabContent}></View>,
     voiceRecorder: () => <View style={styles.tabContent}></View>,
     notification: () => <View style={styles.tabContent}></View>,
-    profile: () => <View style={styles.tabContent}></View>,
+    profile: () => (
+      // <Profile />,
+      <View style={styles.tabContent} onPress={goToProfile}></View>
+    ),
   });
 
   return (
@@ -79,13 +85,13 @@ const HomePage = () => {
           {posts.map((post, index) => (
             <React.Fragment key={index}>
               <PostContainer post={post} />
-              {index < posts.length - 1 && <View style={styles.separator} />}
             </React.Fragment>
           ))}
         </View>
       </View>
 
       <BottomNavigation
+        style={styles.bottomNavBar}
         navigationState={{ index, routes }}
         onIndexChange={setIndex}
         renderScene={renderScene}
@@ -109,6 +115,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
+    // marginBottom: 200,
   },
   headerBanner: {
     height: 65,
@@ -128,20 +135,23 @@ const styles = StyleSheet.create({
   },
   allPostsContainer: {
     flex: 1,
-    // padding: 20,
+    padding: 20,
   },
   postContainer: {
     flex: 1,
     justifyContent: "flex-start",
-    paddingBottom: 10,
+    // paddingBottom: 10,
+    // paddingTop: 10,
+    gap: 200,
+    // borderBottomWidth: 20,
   },
-  separator: {
-    height: 185,
-    borderBottomWidth: 1,
-    borderBottomColor: "grey",
-    backgroundColor: "transparent",
-    marginHorizontal: 20,
-  },
+  // separator: {
+  //   height: 185,
+  //   borderBottomWidth: 1,
+  //   borderBottomColor: "grey",
+  //   backgroundColor: "transparent",
+  //   marginHorizontal: 5,
+  // },
   voiceRecorderIcon: {
     backgroundColor: "midnightblue",
     borderRadius: 25,
@@ -150,6 +160,7 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 10,
   },
+  bottomNavBar: {},
 });
 
 export default HomePage;

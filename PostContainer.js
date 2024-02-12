@@ -39,44 +39,44 @@ const VoiceVisualizer = () => {
   );
 };
 
-// const ScrollingText = ({ text, iconPosition }) => {
-//   const translateX = useRef(new Animated.Value(0)).current;
+const ScrollingText = ({ text, iconPosition }) => {
+  const translateX = useRef(new Animated.Value(0)).current;
 
-//   useEffect(() => {
-//     const textWidth = 100; // Set the width based on your content
-//     // const iconWidth = 300; // Set the width of the IconButton
-//     const marginBeforeIconButton = 100; // Set the margin before the IconButton
+  useEffect(() => {
+    const textWidth = 100; // Set the width based on your content
+    // const iconWidth = 300; // Set the width of the IconButton
+    const marginBeforeIconButton = 100; // Set the margin before the IconButton
 
-//     const totalWidth = textWidth + iconPosition - marginBeforeIconButton; // Calculate the total width including the IconButton
+    const totalWidth = textWidth + iconPosition - marginBeforeIconButton; // Calculate the total width including the IconButton
 
-//     const animationDuration = 5000; // Set the duration for the entire animation
+    const animationDuration = 5000; // Set the duration for the entire animation
 
-//     const animate = () => {
-//       Animated.timing(translateX, {
-//         toValue: -totalWidth, // Move the text to the left almost into the IconButton
-//         duration: animationDuration,
-//         useNativeDriver: true,
-//       }).start(() => {
-//         // Reset the animation when it completes
-//         translateX.setValue(0);
-//         animate();
-//       });
-//     };
+    const animate = () => {
+      Animated.timing(translateX, {
+        toValue: -totalWidth, // Move the text to the left almost into the IconButton
+        duration: animationDuration,
+        useNativeDriver: true,
+      }).start(() => {
+        // Reset the animation when it completes
+        translateX.setValue(0);
+        animate();
+      });
+    };
 
-//     animate();
+    animate();
 
-//     return () => {
-//       // Cleanup animation on component unmount
-//       translateX.stopAnimation();
-//     };
-//   }, [translateX, iconPosition]);
+    return () => {
+      // Cleanup animation on component unmount
+      translateX.stopAnimation();
+    };
+  }, [translateX, iconPosition]);
 
-//   return (
-//     <Animated.Text style={{ transform: [{ translateX }], zIndex: -10 }}>
-//       {text}
-//     </Animated.Text>
-//   );
-// };
+  return (
+    <Animated.Text style={{ transform: [{ translateX }], zIndex: -10 }}>
+      {text}
+    </Animated.Text>
+  );
+};
 
 const PostContainer = ({ post }) => {
   return (
@@ -160,7 +160,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-
     paddingLeft: 20,
   },
   allPostsContainer: {
@@ -168,7 +167,6 @@ const styles = StyleSheet.create({
   },
   postContainer: {
     flex: 1,
-    // marginBottom: 20,
     justifyContent: "flex-start",
     // backgroundColor: "blue",
   },
