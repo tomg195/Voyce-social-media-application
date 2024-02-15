@@ -10,13 +10,14 @@ import {
   TextInput,
   Animated,
 } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
-import PostContainer from "./PostContainer";
-import Profile from "./Profile";
+import PostContainer from "../../PostContainer";
+import ProfileScreen from "./ProfileScreen";
 
-const HomePage = ({ navigation }) => {
+const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
 
   const goBack = () => {
@@ -52,19 +53,14 @@ const HomePage = ({ navigation }) => {
     { key: "profile", icon: "account" },
   ];
 
-  const goToProfile = () => {
-    navigation.navigate("Profile");
-  };
-
   const renderScene = BottomNavigation.SceneMap({
     home: () => <View style={styles.tabContent}></View>,
     search: () => <View style={styles.tabContent}></View>,
     voiceRecorder: () => <View style={styles.tabContent}></View>,
     notification: () => <View style={styles.tabContent}></View>,
-    profile: () => (
-      // <Profile />,
-      <View style={styles.tabContent} onPress={goToProfile}></View>
-    ),
+    profile: () => <ProfileScreen />,
+
+    // <View style={styles.tabContent} onPress={goToProfile}></View>
   });
 
   return (
@@ -72,12 +68,11 @@ const HomePage = ({ navigation }) => {
       <View style={styles.headerBanner}>
         <TouchableOpacity onPress={goBack}>
           <Image
-            source={require("./logoV2.jpg")}
+            source={require("../../logoV2.jpg")}
             style={styles.headerImage}
             resizeMode="contain"
           />
         </TouchableOpacity>
-        <StatusBar style="auto" />
       </View>
 
       <View style={styles.container}>
@@ -96,17 +91,18 @@ const HomePage = ({ navigation }) => {
         onIndexChange={setIndex}
         renderScene={renderScene}
         renderIcon={({ route }) => (
-          <View style={styles.iconContainer}>
+          <TouchableOpacity>
             <MaterialCommunityIcons
               name={route.icon}
               color={route.key === "voiceRecorder" ? "white" : "midnightblue"}
               size={30}
               style={route.key === "voiceRecorder" && styles.voiceRecorderIcon}
             />
-          </View>
+          </TouchableOpacity>
         )}
         barStyle={{ backgroundColor: "white" }}
       />
+      <StatusBar style="auto" />
     </View>
   );
 };
@@ -160,7 +156,13 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingLeft: 10,
   },
-  bottomNavBar: {},
+  bottomNavBar: {
+    height: 60,
+    // backgroundColor: "blue",
+    // color: "transparent",
+    borderTopColor: "red",
+    borderTopWidth: 2,
+  },
 });
 
-export default HomePage;
+export default HomeScreen;

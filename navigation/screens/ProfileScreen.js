@@ -11,9 +11,9 @@ import {
   Animated,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import PostContainer from "./PostContainer";
+import PostContainer from "../../PostContainer";
 
-const Profile = ({ navigation }) => {
+const ProfileScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>Hello</Text>
@@ -21,13 +21,10 @@ const Profile = ({ navigation }) => {
   );
 };
 
-// const goToProfile = () => {
-//   navigation.goToProfile;
-// };
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    // flex: 1,
   },
 });
 
-export default Profile;
+export default ProfileScreen;
