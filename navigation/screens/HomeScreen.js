@@ -16,9 +16,12 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 import Svg, { Rect } from "react-native-svg";
 import PostContainer from "../../PostContainer";
 import ProfileScreen from "./ProfileScreen";
+import AudioRecorder from "./AudioRecorder";
 
 const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
+  const [isRecording, setIsRecording] = useState(false);
+  console.log(isRecording, "isRecording");
 
   const goBack = () => {
     navigation.goBack();
@@ -43,6 +46,24 @@ const HomeScreen = ({ navigation }) => {
       likes: 10,
       comments: 3,
     },
+    {
+      id: 3,
+      screenName: "Jack Brook",
+      userName: "@JB97",
+      title: "Come on you Bees!!",
+      location: "Brentford, London",
+      likes: 10,
+      comments: 3,
+    },
+    {
+      id: 4,
+      screenName: "Jack Brook",
+      userName: "@JB97",
+      title: "Come on you Bees!!",
+      location: "Brentford, London",
+      likes: 10,
+      comments: 3,
+    },
   ];
 
   const routes = [
@@ -54,56 +75,55 @@ const HomeScreen = ({ navigation }) => {
   ];
 
   const renderScene = BottomNavigation.SceneMap({
-    home: () => <View style={styles.tabContent}></View>,
+    home: () => <PostContainer posts={posts} />,
     search: () => <View style={styles.tabContent}></View>,
-    voiceRecorder: () => <View style={styles.tabContent}></View>,
+    voiceRecorder: () => <View style={styles.tabContent}></View>, // Keep this view consistent
     notification: () => <View style={styles.tabContent}></View>,
     profile: () => <ProfileScreen />,
-
-    // <View style={styles.tabContent} onPress={goToProfile}></View>
   });
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerBanner}>
-        <TouchableOpacity onPress={goBack}>
-          <Image
-            source={require("../../logoV2.jpg")}
-            style={styles.headerImage}
-            resizeMode="contain"
-          />
-        </TouchableOpacity>
-      </View>
-
+    <>
       <View style={styles.container}>
-        <View style={styles.postContainer}>
-          {posts.map((post, index) => (
-            <React.Fragment key={index}>
-              <PostContainer post={post} />
-            </React.Fragment>
-          ))}
-        </View>
-      </View>
-
-      <BottomNavigation
-        style={styles.bottomNavBar}
-        navigationState={{ index, routes }}
-        onIndexChange={setIndex}
-        renderScene={renderScene}
-        renderIcon={({ route }) => (
-          <TouchableOpacity>
-            <MaterialCommunityIcons
-              name={route.icon}
-              color={route.key === "voiceRecorder" ? "white" : "midnightblue"}
-              size={30}
-              style={route.key === "voiceRecorder" && styles.voiceRecorderIcon}
+        <View style={styles.headerBanner}>
+          <TouchableOpacity onPress={goBack}>
+            <Image
+              source={require("../../logoV2.jpg")}
+              style={styles.headerImage}
+              resizeMode="contain"
             />
           </TouchableOpacity>
-        )}
-        barStyle={{ backgroundColor: "white" }}
-      />
-      <StatusBar style="auto" />
-    </View>
+        </View>
+        {/* <AudioRecorder onClose={() => setIsRecording(false)} /> */}
+
+        <BottomNavigation
+          style={styles.bottomNavBar}
+          navigationState={{ index, routes }}
+          onIndexChange={setIndex}
+          renderScene={renderScene}
+          renderIcon={({ route }) => (
+            <TouchableOpacity
+              onPress={() => {
+                if (route.key === "voiceRecorder") {
+                  setIsRecording(!isRecording);
+                }
+              }}
+            >
+              <MaterialCommunityIcons
+                name={route.icon}
+                color={route.key === "voiceRecorder" ? "white" : "midnightblue"}
+                size={30}
+                style={
+                  route.key === "voiceRecorder" && styles.voiceRecorderIcon
+                }
+              />
+            </TouchableOpacity>
+          )}
+          barStyle={{ backgroundColor: "white" }}
+        />
+        <StatusBar style="auto" />
+      </View>
+    </>
   );
 };
 
@@ -159,9 +179,7 @@ const styles = StyleSheet.create({
   bottomNavBar: {
     height: 60,
     // backgroundColor: "blue",
-    // color: "transparent",
-    borderTopColor: "red",
-    borderTopWidth: 2,
+    color: "transparent",
   },
 });
 

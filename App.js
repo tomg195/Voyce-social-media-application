@@ -11,6 +11,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./navigation/screens/HomeScreen";
 import ProfileScreen from "./navigation/screens/ProfileScreen";
 

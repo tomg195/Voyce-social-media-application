@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
 import { IconButton } from "react-native-paper";
 import {
   StyleSheet,
@@ -9,6 +9,7 @@ import {
   StatusBar,
   TextInput,
   Animated,
+  ScrollView,
 } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
@@ -39,120 +40,83 @@ const VoiceVisualizer = () => {
   );
 };
 
-// const ScrollingText = ({ text, iconPosition }) => {
-//   const translateX = useRef(new Animated.Value(0)).current;
-
-//   useEffect(() => {
-//     const textWidth = 100; // Set the width based on your content
-//     // const iconWidth = 300; // Set the width of the IconButton
-//     const marginBeforeIconButton = 100; // Set the margin before the IconButton
-
-//     const totalWidth = textWidth + iconPosition - marginBeforeIconButton; // Calculate the total width including the IconButton
-
-//     const animationDuration = 5000; // Set the duration for the entire animation
-
-//     const animate = () => {
-//       Animated.timing(translateX, {
-//         toValue: -totalWidth, // Move the text to the left almost into the IconButton
-//         duration: animationDuration,
-//         useNativeDriver: true,
-//       }).start(() => {
-//         // Reset the animation when it completes
-//         translateX.setValue(0);
-//         animate();
-//       });
-//     };
-
-//     animate();
-
-//     return () => {
-//       // Cleanup animation on component unmount
-//       translateX.stopAnimation();
-//     };
-//   }, [translateX, iconPosition]);
-
-//   return (
-//     <Animated.Text style={{ transform: [{ translateX }], zIndex: -10 }}>
-//       {text}
-//     </Animated.Text>
-//   );
-// };
-
-const PostContainer = ({ post }) => {
+const PostContainer = ({ posts }) => {
   return (
-    <View style={styles.container}>
-      <View style={styles.allPostsContainer}>
-        <View style={styles.postContainer}>
-          <View style={styles.userInfoContainer}>
-            <View style={styles.screenName}>
-              <Image
-                source={require("./blank-profile-pic.jpg")}
-                style={styles.profilePic}
-                resizeMode="cover"
-              />
+    <ScrollView style={styles.container}>
+      {posts.map((post) => (
+        <View style={styles.allPostsContainer} key={post.id}>
+          <View style={styles.postContainer}>
+            <View style={styles.userInfoContainer}>
+              <View style={styles.screenName}>
+                <Image
+                  source={require("./blank-profile-pic.jpg")}
+                  style={styles.profilePic}
+                  resizeMode="cover"
+                />
 
-              <View style={styles.nameAndOptions}>
-                <View style={styles.nameContainer}>
-                  <Text style={styles.customName}>{post.screenName}</Text>
-                  <Text style={styles.atName}>{post.userName}</Text>
-                </View>
+                <View style={styles.nameAndOptions}>
+                  <View style={styles.nameContainer}>
+                    <Text style={styles.customName}>{post.screenName}</Text>
+                    <Text style={styles.atName}>{post.userName}</Text>
+                  </View>
 
-                <View style={styles.postOptions}>
-                  <IconButton icon="dots-vertical" onPress={() => {}} />
+                  <View style={styles.postOptions}>
+                    <IconButton icon="dots-vertical" onPress={() => {}} />
+                  </View>
                 </View>
               </View>
             </View>
-          </View>
 
-          <TextInput style={styles.postTitle} value={post.title} />
+            <Text style={styles.postTitle}>{post.title}</Text>
 
-          <View style={styles.audioVisualContainer}>
-            <IconButton
-              icon="play-circle"
-              iconColor="midnightblue"
-              size={40}
-              onPress={() => {}}
-            />
-            <VoiceVisualizer />
-          </View>
-
-          <View style={styles.postDetailsContainer}>
-            <IconButton
-              style={styles.time}
-              icon={"clock-time-four-outline"}
-              size={15}
-            />
-            <Text style={styles.time}>5m ago</Text>
-            <IconButton
-              style={styles.locationIcon}
-              icon="cellphone-marker"
-              size={15}
-            />
-            <Text style={styles.location}>Hounslow, London</Text>
-            {/* <ScrollingText
-              text="Hounslow, London, Greater London"
-              iconPosition={styles.locationIcon.marginLeft}
-            /> */}
-          </View>
-
-          <View style={styles.likeCommentContainer}>
-            <View style={styles.likeContainer}>
-              <MaterialCommunityIcons name="heart" color="red" size={18} />
-              <Text style={styles.likeText}>You & 5 people Love this</Text>
+            <View style={styles.audioVisualContainer}>
+              <IconButton
+                icon="play-circle"
+                iconColor="midnightblue"
+                size={40}
+                onPress={() => {}}
+              />
+              <VoiceVisualizer />
             </View>
 
-            <View style={styles.commentContainer}>
-              <MaterialCommunityIcons
-                name="comment"
-                color="midnightblue"
-                size={18}
+            <View style={styles.postDetailsContainer}>
+              <IconButton
+                style={styles.time}
+                icon={"clock-time-four-outline"}
+                size={15}
               />
-              <Text style={styles.commentText}>1 Comment</Text>
+              <Text style={styles.time}>5m ago</Text>
+              <IconButton
+                style={styles.locationIcon}
+                icon="cellphone-marker"
+                size={15}
+              />
+              <Text style={styles.location}>Hounslow, London</Text>
+              {/* <ScrollingText
+                text="Hounslow, London, Greater London"
+                iconPosition={styles.locationIcon.marginLeft}
+              /> */}
+            </View>
+
+            <View style={styles.likeCommentContainer}>
+              <View style={styles.likeContainer}>
+                <MaterialCommunityIcons name="heart" color="red" size={18} />
+                <Text style={styles.likeText}>You & 5 people Love this</Text>
+              </View>
+
+              <View style={styles.commentContainer}>
+                <MaterialCommunityIcons
+                  name="comment"
+                  color="midnightblue"
+                  size={18}
+                />
+                <Text style={styles.commentText}>1 Comment</Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-    </View>
+      ))}
+    </ScrollView>
   );
 };
 
@@ -161,26 +125,26 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     paddingLeft: 20,
+    paddingRight: 20,
   },
   allPostsContainer: {
     flex: 1,
+    paddingBottom: 20,
+    borderBottomColor: "grey",
+    borderBottomWidth: 1,
   },
   postContainer: {
     flex: 1,
     justifyContent: "flex-start",
-    // backgroundColor: "blue",
+    paddingTop: 15,
   },
   nameAndOptions: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
   },
-  nameContainer: {
-    // flex: 1,
-    // marginRight: 10,
-  },
+  nameContainer: {},
   postOptions: {
-    // justifyContent: "flex-end",
     marginLeft: 120,
   },
   profilePic: {
@@ -188,15 +152,12 @@ const styles = StyleSheet.create({
     height: 50,
     borderRadius: 25,
     marginRight: 10,
-    // marginLeft: 10,
   },
   screenName: {
     flexDirection: "row",
     alignItems: "center",
   },
-  userInfoContainer: {
-    // marginLeft: 5,
-  },
+  userInfoContainer: {},
   customName: {
     fontSize: 16,
     fontWeight: "bold",
