@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IconButton } from "react-native-paper";
 import {
   StyleSheet,
@@ -26,7 +26,7 @@ const VoiceVisualizer = () => {
         y={75 - height} // Invert the height to make it grow upwards
         width={10} // Width of each bar
         height={height}
-        fill="indigo"
+        fill="midnightblue"
       />
     ));
   };
@@ -47,22 +47,20 @@ const PostContainer = ({ posts }) => {
         <View style={styles.allPostsContainer} key={post.id}>
           <View style={styles.postContainer}>
             <View style={styles.userInfoContainer}>
-              <View style={styles.screenName}>
-                <Image
-                  source={require("./blank-profile-pic.jpg")}
-                  style={styles.profilePic}
-                  resizeMode="cover"
-                />
+              <Image
+                source={require("./blank-profile-pic.jpg")}
+                style={styles.profilePic}
+                resizeMode="cover"
+              />
 
-                <View style={styles.nameAndOptions}>
-                  <View style={styles.nameContainer}>
-                    <Text style={styles.customName}>{post.screenName}</Text>
-                    <Text style={styles.atName}>{post.userName}</Text>
-                  </View>
+              <View style={styles.nameAndOptions}>
+                <View style={styles.nameContainer}>
+                  <Text style={styles.customName}>{post.screenName}</Text>
+                  <Text style={styles.atName}>{post.userName}</Text>
+                </View>
 
-                  <View style={styles.postOptions}>
-                    <IconButton icon="dots-vertical" onPress={() => {}} />
-                  </View>
+                <View style={styles.postOptions}>
+                  <IconButton icon="dots-vertical" onPress={() => {}} />
                 </View>
               </View>
             </View>
@@ -85,23 +83,25 @@ const PostContainer = ({ posts }) => {
                 icon={"clock-time-four-outline"}
                 size={15}
               />
-              <Text style={styles.time}>5m ago</Text>
+              <Text style={styles.time}>{post.time}</Text>
               <IconButton
                 style={styles.locationIcon}
                 icon="cellphone-marker"
                 size={15}
               />
-              <Text style={styles.location}>Hounslow, London</Text>
-              {/* <ScrollingText
-                text="Hounslow, London, Greater London"
-                iconPosition={styles.locationIcon.marginLeft}
-              /> */}
+              <Text style={styles.location}>{post.location}</Text>
             </View>
 
             <View style={styles.likeCommentContainer}>
               <View style={styles.likeContainer}>
-                <MaterialCommunityIcons name="heart" color="red" size={18} />
-                <Text style={styles.likeText}>You & 5 people Love this</Text>
+                <MaterialCommunityIcons
+                  name="heart"
+                  color="midnightblue"
+                  size={18}
+                />
+                <Text style={styles.likeText}>
+                  You & {post.likes} people Love this
+                </Text>
               </View>
 
               <View style={styles.commentContainer}>
@@ -110,7 +110,7 @@ const PostContainer = ({ posts }) => {
                   color="midnightblue"
                   size={18}
                 />
-                <Text style={styles.commentText}>1 Comment</Text>
+                <Text style={styles.commentText}>{post.comments} Comments</Text>
               </View>
             </View>
           </View>
@@ -145,7 +145,8 @@ const styles = StyleSheet.create({
   },
   nameContainer: {},
   postOptions: {
-    marginLeft: 120,
+    position: "absolute",
+    marginLeft: 210,
   },
   profilePic: {
     width: 50,
@@ -153,11 +154,10 @@ const styles = StyleSheet.create({
     borderRadius: 25,
     marginRight: 10,
   },
-  screenName: {
+  userInfoContainer: {
     flexDirection: "row",
     alignItems: "center",
   },
-  userInfoContainer: {},
   customName: {
     fontSize: 16,
     fontWeight: "bold",
@@ -184,8 +184,8 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   time: {
-    alignItems: "flex-start",
     color: "gray",
+    flexDirection: "row",
   },
   location: {
     color: "midnightblue",

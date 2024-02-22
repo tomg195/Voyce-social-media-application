@@ -9,6 +9,7 @@ import {
   StatusBar,
   TextInput,
   Animated,
+  ScrollView,
 } from "react-native";
 import { useNavigation, NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -21,7 +22,7 @@ import AudioRecorder from "./AudioRecorder";
 const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
   const [isRecording, setIsRecording] = useState(false);
-  console.log(isRecording, "isRecording");
+  // console.log(isRecording, "isRecording");
 
   const goBack = () => {
     navigation.goBack();
@@ -33,15 +34,17 @@ const HomeScreen = ({ navigation }) => {
       screenName: "Darren Pereira",
       userName: "@Daz_Attack",
       title: "What happened to Liverpool last night?",
+      time: "5m ago",
       location: "Hounslow, London",
       likes: 5,
-      comments: 1,
+      comments: 2,
     },
     {
       id: 2,
       screenName: "Jack Brook",
       userName: "@JB97",
       title: "Come on you Bees!!",
+      time: "10m ago",
       location: "Brentford, London",
       likes: 10,
       comments: 3,
@@ -51,6 +54,7 @@ const HomeScreen = ({ navigation }) => {
       screenName: "Jack Brook",
       userName: "@JB97",
       title: "Come on you Bees!!",
+      time: "10m ago",
       location: "Brentford, London",
       likes: 10,
       comments: 3,
@@ -60,6 +64,7 @@ const HomeScreen = ({ navigation }) => {
       screenName: "Jack Brook",
       userName: "@JB97",
       title: "Come on you Bees!!",
+      time: "10m ago",
       location: "Brentford, London",
       likes: 10,
       comments: 3,
@@ -79,7 +84,7 @@ const HomeScreen = ({ navigation }) => {
     search: () => <View style={styles.tabContent}></View>,
     voiceRecorder: () => <View style={styles.tabContent}></View>, // Keep this view consistent
     notification: () => <View style={styles.tabContent}></View>,
-    profile: () => <ProfileScreen />,
+    profile: () => <ProfileScreen posts={posts} />,
   });
 
   return (
@@ -88,11 +93,17 @@ const HomeScreen = ({ navigation }) => {
         <View style={styles.headerBanner}>
           <TouchableOpacity onPress={goBack}>
             <Image
-              source={require("../../logoV2.jpg")}
+              source={require("../../logoV3.png")}
               style={styles.headerImage}
               resizeMode="contain"
             />
           </TouchableOpacity>
+          <IconButton
+            icon="cog"
+            iconColor="grey"
+            onPress={() => {}}
+            style={styles.settingsBtn}
+          />
         </View>
         {/* <AudioRecorder onClose={() => setIsRecording(false)} /> */}
 
@@ -131,7 +142,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    // marginBottom: 200,
   },
   headerBanner: {
     height: 65,
@@ -139,10 +149,17 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#fff",
+    flexDirection: "row",
   },
   headerImage: {
-    width: 200,
+    width: 175,
     height: 70,
+    marginLeft: 93,
+    marginTop: 10,
+  },
+  settingsBtn: {
+    marginLeft: "auto",
+    marginRight: 15,
   },
   tabContent: {
     flex: 1,
@@ -156,18 +173,8 @@ const styles = StyleSheet.create({
   postContainer: {
     flex: 1,
     justifyContent: "flex-start",
-    // paddingBottom: 10,
-    // paddingTop: 10,
-    gap: 200,
-    // borderBottomWidth: 20,
+    // gap: 200,
   },
-  // separator: {
-  //   height: 185,
-  //   borderBottomWidth: 1,
-  //   borderBottomColor: "grey",
-  //   backgroundColor: "transparent",
-  //   marginHorizontal: 5,
-  // },
   voiceRecorderIcon: {
     backgroundColor: "midnightblue",
     borderRadius: 25,
@@ -178,7 +185,6 @@ const styles = StyleSheet.create({
   },
   bottomNavBar: {
     height: 60,
-    // backgroundColor: "blue",
     color: "transparent",
   },
 });
