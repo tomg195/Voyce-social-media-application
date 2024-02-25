@@ -82,9 +82,9 @@ const HomeScreen = ({ navigation }) => {
   const renderScene = BottomNavigation.SceneMap({
     home: () => <PostContainer posts={posts} />,
     search: () => <View style={styles.tabContent}></View>,
-    voiceRecorder: () => <View style={styles.tabContent}></View>, // Keep this view consistent
+    voiceRecorder: () => <View style={styles.tabContent}></View>,
     notification: () => <View style={styles.tabContent}></View>,
-    profile: () => <ProfileScreen posts={posts} />,
+    profile: () => <ProfileScreen />,
   });
 
   return (

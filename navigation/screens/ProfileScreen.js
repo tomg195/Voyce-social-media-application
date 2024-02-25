@@ -11,8 +11,9 @@ import {
   Animated,
   ScrollView,
 } from "react-native";
+import PSPosts from "./profileScreenViews/psPosts";
 
-const ProfileScreen = ({ navigation, posts }) => {
+const ProfileScreen = ({ navigation, userPosts }) => {
   const [index, setIndex] = useState(0);
 
   const userInformation = {
@@ -23,49 +24,38 @@ const ProfileScreen = ({ navigation, posts }) => {
   };
 
   const routes = [
-    { key: "posts", title: "Posts", icon: "format-list-bulleted" },
-    { key: "replies", title: "Replies", icon: "comment" },
-    { key: "media", title: "Media", icon: "image" },
-    { key: "likes", title: "Likes", icon: "heart" },
+    { key: "posts", title: "Posts" },
+    { key: "likes", title: "Likes" },
+    { key: "tagged", title: "Tagged" },
+    { key: "saved", title: "Saved" },
   ];
 
-  const PostsRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "blue" }]}>
-      <Text style={{ color: "blue" }}>Posts Content</Text>
-    </View>
-  );
-
-  const RepliesRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#673ab7" }]}>
-      <Text style={{ color: "white" }}>Replies Content</Text>
-    </View>
-  );
-
-  const HighlightsRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#4caf50" }]}>
-      <Text style={{ color: "white" }}>Highlights Content</Text>
-    </View>
-  );
-
-  const MediaRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#2196f3" }]}>
-      <Text style={{ color: "white" }}>Media Content</Text>
-    </View>
-  );
-
-  const LikesRoute = () => (
-    <View style={[styles.scene, { backgroundColor: "#ff9800" }]}>
-      <Text style={{ color: "white" }}>Likes Content</Text>
-    </View>
-  );
-
   const renderScene = BottomNavigation.SceneMap({
-    posts: PostsRoute,
-    replies: RepliesRoute,
-    highlights: HighlightsRoute,
-    media: MediaRoute,
-    likes: LikesRoute,
+    posts: () => <PSPosts />,
+    likes: () => <Text>likes</Text>,
+    tagged: () => <Text>tagged</Text>,
+    saved: () => <Text>saved</Text>,
   });
+
+  const [content, setContent] = useState(() =>
+    renderScene({ route: routes[0] })
+  );
+
+  const handleIndexChange = (newIndex) => {
+    setIndex(newIndex);
+    const route = routes[newIndex];
+    setContent(() => renderScene({ route }));
+  };
+
+  const MyTabBarItem = ({ route, onPress, index }) => (
+    <TouchableOpacity
+      key={route.key}
+      style={styles.tabItem}
+      onPress={() => onPress(route.key)}
+    >
+      <Text style={styles.tabText}>{route.title}</Text>
+    </TouchableOpacity>
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -98,20 +88,16 @@ const ProfileScreen = ({ navigation, posts }) => {
         <Text style={styles.atNameText}>{userInformation.userName}</Text>
       </View>
 
-      {/* <TouchableOpacity style={styles.userBehaviour}>
-        <Text style={styles.userBehaviour}>HELLO</Text>
-        <Text style={styles.userBehaviour}>YO</Text>
-        <Text style={styles.userBehaviour}>kkjlasfdg</Text>
-        <Text style={styles.userBehaviour}>ldasfk</Text>
-      </TouchableOpacity> */}
-
       <View style={styles.container}>
         <BottomNavigation
           navigationState={{ index, routes }}
-          onIndexChange={setIndex}
+          onIndexChange={handleIndexChange}
           renderScene={renderScene}
+          barStyle={{ backgroundColor: "white" }}
+          renderTouchable={MyTabBarItem}
         />
       </View>
+      <View>{content}</View>
     </ScrollView>
   );
 };
@@ -157,15 +143,20 @@ const styles = StyleSheet.create({
     fontSize: 15,
     color: "gray",
   },
-  userBehaviour: {
-    color: "red",
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-  },
   scene: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  tabItem: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    paddingVertical: 12,
+  },
+  tabText: {
+    fontSize: 19,
+    color: "midnightblue",
   },
 });
 
