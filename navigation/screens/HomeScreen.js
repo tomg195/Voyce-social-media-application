@@ -12,16 +12,17 @@ import {
   ScrollView,
 } from "react-native";
 import { useNavigation, NavigationContainer } from "@react-navigation/native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
 import PostContainer from "../../PostContainer";
 import ProfileScreen from "./ProfileScreen";
 import AudioRecorder from "./AudioRecorder";
+import NotificationsPage from "./NotificationsScreen";
+import SearchScreen from "./SearchScreen";
 
 const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
-  const [isRecording, setIsRecording] = useState(false);
+  // const [isRecording, setIsRecording] = useState(false);
   // console.log(isRecording, "isRecording");
 
   const goBack = () => {
@@ -81,9 +82,9 @@ const HomeScreen = ({ navigation }) => {
 
   const renderScene = BottomNavigation.SceneMap({
     home: () => <PostContainer posts={posts} />,
-    search: () => <View style={styles.tabContent}></View>,
-    voiceRecorder: () => <View style={styles.tabContent}></View>,
-    notification: () => <View style={styles.tabContent}></View>,
+    search: () => <SearchScreen />,
+    voiceRecorder: () => <AudioRecorder />,
+    notification: () => <NotificationsPage />,
     profile: () => <ProfileScreen />,
   });
 
@@ -105,6 +106,7 @@ const HomeScreen = ({ navigation }) => {
             style={styles.settingsBtn}
           />
         </View>
+
         {/* <AudioRecorder onClose={() => setIsRecording(false)} /> */}
 
         <BottomNavigation

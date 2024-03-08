@@ -16,7 +16,7 @@ import Svg, { Rect } from "react-native-svg";
 
 const VoiceVisualizer = () => {
   // Simulated data for the visualizer
-  const data = [30, 50, 70, 40, 60, 80, 50, 30, 70, 40];
+  const data = [30, 50, 70, 60, 50, 45, 50, 40, 60, 50, 40, 35, 50, 70, 90];
 
   const renderBars = () => {
     return data.map((height, index) => (
@@ -24,7 +24,7 @@ const VoiceVisualizer = () => {
         key={index}
         x={index * 15} // Adjust the width of each bar
         y={75 - height} // Invert the height to make it grow upwards
-        width={10} // Width of each bar
+        width={9} // Width of each bar
         height={height}
         fill="midnightblue"
       />

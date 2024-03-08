@@ -1,8 +1,24 @@
-import React from "react";
-import { View, Button, Text } from "react-native";
+import React, { useState, useRef, useEffect } from "react";
+import { BottomNavigation, IconButton } from "react-native-paper";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  TextInput,
+  Animated,
+  ScrollView,
+  Button,
+} from "react-native";
+import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const AudioRecorder = ({ onClose }) => {
-  // Add your recording logic here
+  const [recording, setRecording] = useState();
+  const [recordings, setRecordings] = useState([]);
+  const [message, setMessage] = useState("");
 
   return (
     <View
@@ -21,5 +37,14 @@ const AudioRecorder = ({ onClose }) => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export default AudioRecorder;
