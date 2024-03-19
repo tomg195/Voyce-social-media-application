@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     // marginTop: 20,
   },
   button: {
-    backgroundColor: "midnightblue",
+    backgroundColor: "indigo",
     paddingVertical: 10,
     paddingHorizontal: 40,
     borderRadius: 5,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   forgotPasswordText: {
-    color: "midnightblue",
+    color: "indigo",
     marginTop: 20,
   },
 });

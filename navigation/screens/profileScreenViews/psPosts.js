@@ -27,7 +27,7 @@ const VoiceVisualizer = () => {
         y={75 - height} // Invert the height to make it grow upwards
         width={5} // Width of each bar
         height={height}
-        fill="midnightblue"
+        fill="indigo"
       />
     ));
   };
@@ -58,12 +58,12 @@ const PSPosts = ({}) => {
       id: 2,
       screenName: "Darren Pereira",
       userName: "@Daz_Attack",
-      title: "What happened to Liverpool last night?",
+      title: "My thoughts on what Jurgen Klopp said",
       time: "5m ago",
       location: "Hounslow, London",
-      likes: 5,
+      likes: 10,
       comments: 2,
-      shares: 2,
+      shares: 1,
     },
   ];
 
@@ -77,7 +77,7 @@ const PSPosts = ({}) => {
             <View style={styles.audioVisualContainer}>
               <IconButton
                 icon="play-circle"
-                iconColor="midnightblue"
+                iconColor="indigo"
                 style={{ paddingRight: 10 }}
                 size={40}
                 onPress={() => {}}
@@ -87,18 +87,14 @@ const PSPosts = ({}) => {
 
             <View style={styles.engagements}>
               <View style={styles.likes}>
-                <MaterialCommunityIcons
-                  name="heart"
-                  color="midnightblue"
-                  size={18}
-                />
+                <MaterialCommunityIcons name="heart" color="indigo" size={18} />
                 <Text>{userPost.likes}</Text>
               </View>
 
               <View style={styles.comments}>
                 <MaterialCommunityIcons
                   name="comment"
-                  color="midnightblue"
+                  color="indigo"
                   size={18}
                 />
                 <Text>{userPost.comments}</Text>
@@ -107,7 +103,7 @@ const PSPosts = ({}) => {
               <View style={styles.shares}>
                 <MaterialCommunityIcons
                   name="share-circle"
-                  color="midnightblue"
+                  color="indigo"
                   size={18}
                 />
                 <Text>{userPost.shares}</Text>
@@ -116,6 +112,9 @@ const PSPosts = ({}) => {
           </View>
         </View>
       ))}
+      <View>
+        <Image source={require("../../../images/DarrenPereira.jpg")} />
+      </View>
     </ScrollView>
   );
 };

@@ -14,7 +14,7 @@ import {
 import { useNavigation, NavigationContainer } from "@react-navigation/native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
-import PostContainer from "../../PostContainer";
+import PostContainer from "./feedContent/PostContainer";
 import ProfileScreen from "./ProfileScreen";
 import AudioRecorder from "./AudioRecorder";
 import NotificationsPage from "./NotificationsScreen";
@@ -39,36 +39,106 @@ const HomeScreen = ({ navigation }) => {
       location: "Hounslow, London",
       likes: 5,
       comments: 2,
+      profilePic: require("../../images/DarrenPereira.jpg"),
     },
     {
       id: 2,
       screenName: "Jack Brook",
       userName: "@JB97",
-      title: "Come on you Bees!!",
+      title: "Come on you Bees!",
       time: "10m ago",
       location: "Brentford, London",
       likes: 10,
       comments: 3,
+      profilePic: require("../../images/JackBrook.jpg"),
     },
     {
       id: 3,
-      screenName: "Jack Brook",
-      userName: "@JB97",
-      title: "Come on you Bees!!",
+      screenName: "London News",
+      userName: "@LondonNews",
+      title: "Rounding up today's top stories",
       time: "10m ago",
-      location: "Brentford, London",
-      likes: 10,
-      comments: 3,
+      location: "White City, London",
+      likes: 50,
+      comments: 27,
+      profilePic: require("../../images/LondonNews.jpg"),
     },
     {
       id: 4,
-      screenName: "Jack Brook",
-      userName: "@JB97",
-      title: "Come on you Bees!!",
-      time: "10m ago",
-      location: "Brentford, London",
-      likes: 10,
+      screenName: "Allana Ed Peacock",
+      userName: "@APeacock",
+      title: "You Won't believe what happened to me today!",
+      time: "12m ago",
+      location: "Bristol",
+      likes: 13,
       comments: 3,
+      profilePic: require("../../images/Allana.jpg"),
+    },
+    {
+      id: 5,
+      screenName: "Silvia Ian",
+      userName: "@siian",
+      title: "My review of Pétrus by Gordon Ramsay",
+      time: "15m ago",
+      location: "Knightsbridge, London",
+      likes: 20,
+      comments: 14,
+      profilePic: require("../../images/Silvia.jpg"),
+    },
+    {
+      id: 6,
+      screenName: "Sandra Tria",
+      userName: "@STria99",
+      title: "ASMR daily",
+      time: "23m ago",
+      location: "Seven Dials, Brighton",
+      likes: 6,
+      comments: 2,
+      profilePic: require("../../images/Sandra.jpg"),
+    },
+    {
+      id: 7,
+      screenName: "Kermit Marylyn",
+      userName: "@Kerma",
+      title: "Thoughts on this melody?",
+      time: "28m ago",
+      location: "Salford, Manchester",
+      likes: 15,
+      comments: 8,
+      profilePic: require("../../images/Kermit.jpg"),
+    },
+    {
+      id: 8,
+      screenName: "Malcolm Kemp",
+      userName: "@MKemp",
+      title: "Listen to this!",
+      time: "33m ago",
+      location: "",
+      likes: 4,
+      comments: 2,
+      profilePic: require("../../images/Malcolm.jpg"),
+    },
+    {
+      id: 9,
+      screenName: "Vince Ted",
+      userName: "VT22",
+      title: "Daily motivation",
+      time: "45m ago",
+      location: "Newcastle upon Tyne",
+      likes: 11,
+      comments: 3,
+      profilePic: require("../../images/VinceTed.jpg"),
+    },
+    {
+      id: 10,
+      screenName: "Clarence Ellington",
+      userName: "@clazell97",
+      title: "Thoughts on the VOYCE app so far",
+      time: "1h ago",
+      location: "Stourbridge, Birmingham",
+      likes: 13,
+      comments: 3,
+      profilePic: require("../../images/Clarence.jpg"),
     },
   ];
 
@@ -124,7 +194,7 @@ const HomeScreen = ({ navigation }) => {
             >
               <MaterialCommunityIcons
                 name={route.icon}
-                color={route.key === "voiceRecorder" ? "white" : "midnightblue"}
+                color={route.key === "voiceRecorder" ? "white" : "indigo"}
                 size={30}
                 style={
                   route.key === "voiceRecorder" && styles.voiceRecorderIcon
@@ -178,7 +248,7 @@ const styles = StyleSheet.create({
     // gap: 200,
   },
   voiceRecorderIcon: {
-    backgroundColor: "midnightblue",
+    backgroundColor: "indigo",
     borderRadius: 25,
     height: 50,
     width: 50,

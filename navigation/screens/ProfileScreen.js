@@ -19,8 +19,8 @@ const ProfileScreen = ({ navigation, userPosts }) => {
   const userInformation = {
     screenName: "Darren Pereira",
     userName: "@Daz_Attack",
-    listeners: 10,
-    listening: 100,
+    listeners: 20,
+    listening: 234,
   };
 
   const routes = [
@@ -53,9 +53,35 @@ const ProfileScreen = ({ navigation, userPosts }) => {
       style={styles.tabItem}
       onPress={() => onPress(route.key)}
     >
-      <Text style={styles.tabText}>{route.title}</Text>
+      <Text
+        style={[
+          styles.tabText,
+          index === route.key ? styles.activeTabText : styles.inactiveTabText,
+        ]}
+      >
+        {route.title}
+      </Text>
     </TouchableOpacity>
   );
+
+  // const MyTabBarItem = ({ route, onPress, activeIndex }) => (
+  //   <TouchableOpacity
+  //     key={route.key}
+  //     style={styles.tabItem}
+  //     onPress={() => onPress(route.key)}
+  //   >
+  //     <Text
+  //       style={[
+  //         styles.tabText,
+  //         activeIndex === route.key
+  //           ? styles.activeTabText
+  //           : styles.inactiveTabText,
+  //       ]}
+  //     >
+  //       {route.title}
+  //     </Text>
+  //   </TouchableOpacity>
+  // );
 
   return (
     <ScrollView style={styles.container}>
@@ -76,7 +102,7 @@ const ProfileScreen = ({ navigation, userPosts }) => {
         <TouchableOpacity style={styles.listeningInfo}>
           <Text style={styles.listeningInfoText}>Listening</Text>
           <Text style={styles.listeningInfoText}>
-            {userInformation.listeners}
+            {userInformation.listening}
           </Text>
         </TouchableOpacity>
       </View>
@@ -134,7 +160,7 @@ const styles = StyleSheet.create({
   screenNameText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "midnightblue",
+    color: "indigo",
   },
   atName: {
     alignItems: "center",
@@ -156,7 +182,13 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 19,
-    color: "midnightblue",
+    // color: "grey",
+  },
+  activeTabText: {
+    color: "indigo",
+  },
+  inactiveTabText: {
+    color: "grey",
   },
 });
 
