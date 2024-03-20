@@ -19,6 +19,7 @@ import ProfileScreen from "./ProfileScreen";
 import AudioRecorder from "./AudioRecorder";
 import NotificationsPage from "./NotificationsScreen";
 import SearchScreen from "./SearchScreen";
+import NotificationsScreen from "./NotificationsScreen";
 
 const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
@@ -38,7 +39,7 @@ const HomeScreen = ({ navigation }) => {
       time: "5m ago",
       location: "Hounslow, London",
       likes: 5,
-      comments: 2,
+      comments: 1,
       profilePic: require("../../images/DarrenPereira.jpg"),
     },
     {
@@ -48,6 +49,7 @@ const HomeScreen = ({ navigation }) => {
       title: "Come on you Bees!",
       time: "10m ago",
       location: "Brentford, London",
+      with: "Aaron DaCosta",
       likes: 10,
       comments: 3,
       profilePic: require("../../images/JackBrook.jpg"),
@@ -80,7 +82,7 @@ const HomeScreen = ({ navigation }) => {
       userName: "@siian",
       title: "My review of Pétrus by Gordon Ramsay",
       time: "15m ago",
-      location: "Knightsbridge, London",
+      location: "",
       likes: 20,
       comments: 14,
       profilePic: require("../../images/Silvia.jpg"),
@@ -115,7 +117,7 @@ const HomeScreen = ({ navigation }) => {
       time: "33m ago",
       location: "",
       likes: 4,
-      comments: 2,
+      comments: 1,
       profilePic: require("../../images/Malcolm.jpg"),
     },
     {
@@ -154,7 +156,7 @@ const HomeScreen = ({ navigation }) => {
     home: () => <PostContainer posts={posts} />,
     search: () => <SearchScreen />,
     voiceRecorder: () => <AudioRecorder />,
-    notification: () => <NotificationsPage />,
+    notification: () => <NotificationsScreen posts={posts} />,
     profile: () => <ProfileScreen />,
   });
 
@@ -211,6 +213,16 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+  noShadow: {
+    shadowColor: "transparent",
+    shadowOpacity: 0,
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowRadius: 0,
+    elevation: 0,
+  },
   container: {
     flex: 1,
     backgroundColor: "#fff",

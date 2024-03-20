@@ -65,6 +65,50 @@ const PSPosts = ({}) => {
       comments: 2,
       shares: 1,
     },
+    {
+      id: 3,
+      screenName: "Darren Pereira",
+      userName: "@Daz_Attack",
+      title: "Guess what happened on my way home today",
+      time: "5m ago",
+      location: "Hounslow, London",
+      likes: 2,
+      comments: 0,
+      shares: 0,
+    },
+    {
+      id: 4,
+      screenName: "Darren Pereira",
+      userName: "@Daz_Attack",
+      title: "Does this sound strange to you? What do people think it is?",
+      time: "5m ago",
+      location: "Hounslow, London",
+      likes: 8,
+      comments: 5,
+      shares: 0,
+    },
+    {
+      id: 5,
+      screenName: "Darren Pereira",
+      userName: "@Daz_Attack",
+      title: "My FAVOURITE part of this song!",
+      time: "5m ago",
+      location: "Hounslow, London",
+      likes: 6,
+      comments: 3,
+      shares: 0,
+    },
+    {
+      id: 6,
+      screenName: "Darren Pereira",
+      userName: "@Daz_Attack",
+      title: "Can any photographers help me out with this?",
+      time: "5m ago",
+      location: "Hounslow, London",
+      likes: 9,
+      comments: 5,
+      shares: 1,
+    },
   ];
 
   return (
@@ -86,35 +130,39 @@ const PSPosts = ({}) => {
             </View>
 
             <View style={styles.engagements}>
-              <View style={styles.likes}>
-                <MaterialCommunityIcons name="heart" color="indigo" size={18} />
-                <Text>{userPost.likes}</Text>
+              <View style={styles.likesContainer}>
+                <MaterialCommunityIcons
+                  style={styles.likes}
+                  name="heart"
+                  color="indigo"
+                  size={18}
+                />
+                <Text style={styles.likes}>{userPost.likes}</Text>
               </View>
 
-              <View style={styles.comments}>
+              <View style={styles.commentsContainer}>
                 <MaterialCommunityIcons
+                  style={styles.comments}
                   name="comment"
                   color="indigo"
                   size={18}
                 />
-                <Text>{userPost.comments}</Text>
+                <Text style={styles.comments}>{userPost.comments}</Text>
               </View>
 
-              <View style={styles.shares}>
+              <View style={styles.sharesContainer}>
                 <MaterialCommunityIcons
+                  style={styles.shares}
                   name="share-circle"
                   color="indigo"
                   size={18}
                 />
-                <Text>{userPost.shares}</Text>
+                <Text style={styles.shares}>{userPost.shares}</Text>
               </View>
             </View>
           </View>
         </View>
       ))}
-      <View>
-        <Image source={require("../../../images/DarrenPereira.jpg")} />
-      </View>
     </ScrollView>
   );
 };
@@ -129,7 +177,7 @@ const styles = StyleSheet.create({
   allPostsContainer: {
     flex: 1,
     borderBottomColor: "grey",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
   postContainer: {
     flexDirection: "row",
@@ -158,20 +206,29 @@ const styles = StyleSheet.create({
     // alignItems: "flex-start",
     // justifyContent: "space-around",
   },
+  likesContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginLeft: 10,
+  },
   likes: {
+    marginRight: 2,
+  },
+  commentsContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginLeft: 10,
   },
   comments: {
+    marginRight: 2,
+  },
+  sharesContainer: {
     flexDirection: "row",
     alignItems: "center",
     marginLeft: 10,
   },
   shares: {
-    flexDirection: "row",
-    alignItems: "center",
-    marginLeft: 10,
+    marginRight: 2,
   },
 });
 

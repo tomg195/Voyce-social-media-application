@@ -14,9 +14,18 @@ import {
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
 
-const VoiceVisualizer = () => {
+const generateRandomData = () => {
+  const newData = [];
+  for (let i = 1; i < 15; i++) {
+    newData.push(Math.floor(Math.random() * (90 - 30 + 1) + 30));
+  }
+
+  return newData;
+};
+
+const VoiceVisualizer = ({ data }) => {
   // Simulated data for the visualizer
-  const data = [30, 50, 70, 60, 50, 45, 50, 40, 60, 50, 40, 35, 50, 70, 90];
+  // const data = [30, 50, 70, 60, 50, 45, 50, 40, 60, 50, 40, 35, 50, 70, 90];
 
   const renderBars = () => {
     return data.map((height, index) => (
@@ -74,22 +83,43 @@ const PostContainer = ({ posts }) => {
                 size={40}
                 onPress={() => {}}
               />
-              <VoiceVisualizer />
+              <VoiceVisualizer data={generateRandomData()} />
             </View>
 
             <View style={styles.postDetailsContainer}>
-              <IconButton
-                style={styles.time}
-                icon={"clock-time-four-outline"}
-                size={15}
-              />
-              <Text style={styles.time}>{post.time}</Text>
-              <IconButton
-                style={styles.locationIcon}
-                icon="cellphone-marker"
-                size={15}
-              />
-              <Text style={styles.location}>{post.location}</Text>
+              <View style={styles.leftContainer}>
+                <View style={styles.timeContainer}>
+                  <IconButton
+                    style={styles.time}
+                    icon={"clock-time-four-outline"}
+                    size={13}
+                  />
+                  <Text style={styles.time}>{post.time}</Text>
+                </View>
+
+                {post.with && (
+                  <View style={styles.withContainer}>
+                    <IconButton
+                      // style={}
+                      icon="account-multiple"
+                      size={13}
+                    />
+                    <Text style={styles.withLabel}>with</Text>
+                    <Text style={styles.withValue}>{post.with}</Text>
+                  </View>
+                )}
+              </View>
+
+              {post.location && (
+                <View style={styles.locationContainer}>
+                  <IconButton
+                    style={styles.locationIcon}
+                    icon="cellphone-marker"
+                    size={13}
+                  />
+                  <Text style={styles.location}>{post.location}</Text>
+                </View>
+              )}
             </View>
 
             <View style={styles.likeCommentContainer}>
@@ -106,7 +136,10 @@ const PostContainer = ({ posts }) => {
                   color="indigo"
                   size={18}
                 />
-                <Text style={styles.commentText}>{post.comments} Comments</Text>
+                <Text style={styles.commentText}>
+                  {post.comments}
+                  {post.comments === 1 ? " Comment" : " Comments"}
+                </Text>
               </View>
             </View>
           </View>
@@ -127,7 +160,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingBottom: 20,
     borderBottomColor: "grey",
-    borderBottomWidth: 1,
+    borderBottomWidth: 0.5,
   },
   postContainer: {
     flex: 1,
@@ -175,20 +208,50 @@ const styles = StyleSheet.create({
   },
   postDetailsContainer: {
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "center",
     alignItems: "center",
-    marginVertical: 10,
+    // marginVertical: 5,
+  },
+  leftContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  timeContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    // marginRight: 15, // Adjust as needed
+  },
+  withContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  withLabel: {
+    color: "grey",
+    marginRight: 5, // Adjust as needed
+    marginHorizontal: -10,
+  },
+  withValue: {
+    color: "indigo",
+  },
+  locationContainer: {
+    flexDirection: "row",
+    alignItems: "center",
   },
   time: {
     color: "gray",
     flexDirection: "row",
+    fontSize: 13,
+    marginHorizontal: -1,
   },
   location: {
     color: "indigo",
-    marginRight: 20,
+    fontSize: 13,
+    // marginRight: 20,
+    // flexDirection: "row",
   },
   locationIcon: {
-    marginLeft: 75,
+    marginLeft: 5,
+    marginHorizontal: -4,
   },
   likeCommentContainer: {
     flexDirection: "row",

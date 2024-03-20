@@ -1,21 +1,27 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  StatusBar,
+  TextInput,
+  Animated,
+  ScrollView,
+} from "react-native";
+import { posts } from "./HomeScreen.js";
 
-const NotificationsPage = () => {
+const NotificationsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Notifications</Text>
-      {/* Here you can map through your notifications data and render each notification */}
-      <View style={styles.notification}>
-        <Text style={styles.notificationText}>You have a new follower!</Text>
-      </View>
-      <View style={styles.notification}>
-        <Text style={styles.notificationText}>
-          Your voice note got 10 likes
-        </Text>
-      </View>
-      {/* Add more notifications as needed */}
-    </View>
+    <ScrollView style={styles.container}>
+      {posts &&
+        posts.map((post) => (
+          <View style={styles.headerContainer}>
+            <Text style={styles.header}>Notifications</Text>
+          </View>
+        ))}
+    </ScrollView>
   );
 };
 
@@ -24,6 +30,9 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
+  },
+  headerContainer: {
+    alignItems: "center",
   },
   header: {
     fontSize: 24,
@@ -41,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NotificationsPage;
+export default NotificationsScreen;

@@ -94,7 +94,7 @@ const ProfileScreen = ({ navigation, userPosts }) => {
         </TouchableOpacity>
 
         <Image
-          source={require("../../blank-profile-pic.jpg")}
+          source={require("../../images/DarrenPereira.jpg")}
           style={styles.profilePic}
           // resizeMode="cover"
         />
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     color: "indigo",
   },
   inactiveTabText: {
-    color: "grey",
+    color: "indigo",
   },
 });
 
