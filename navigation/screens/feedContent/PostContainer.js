@@ -53,94 +53,88 @@ const PostContainer = ({ posts }) => {
   return (
     <ScrollView style={styles.container}>
       {posts.map((post) => (
-        <View style={styles.allPostsContainer} key={post.id}>
-          <View style={styles.postContainer}>
-            <View style={styles.userInfoContainer}>
-              <Image
-                source={post.profilePic}
-                style={styles.profilePic}
-                resizeMode="cover"
-              />
+        <View style={styles.postContainer} key={post.id}>
+          <View style={styles.userInfoContainer}>
+            <Image
+              source={post.profilePic}
+              style={styles.profilePic}
+              resizeMode="cover"
+            />
 
-              <View style={styles.nameAndOptions}>
-                <View style={styles.nameContainer}>
-                  <Text style={styles.customName}>{post.screenName}</Text>
-                  <Text style={styles.atName}>{post.userName}</Text>
-                </View>
-
-                <View style={styles.postOptions}>
-                  <IconButton icon="dots-vertical" onPress={() => {}} />
-                </View>
-              </View>
-            </View>
-
-            <Text style={styles.postTitle}>{post.title}</Text>
-
-            <View style={styles.audioVisualContainer}>
-              <IconButton
-                icon="play-circle"
-                iconColor="indigo"
-                size={40}
-                onPress={() => {}}
-              />
-              <VoiceVisualizer data={generateRandomData()} />
-            </View>
-
-            <View style={styles.postDetailsContainer}>
-              <View style={styles.leftContainer}>
-                <View style={styles.timeContainer}>
-                  <IconButton
-                    style={styles.time}
-                    icon={"clock-time-four-outline"}
-                    size={13}
-                  />
-                  <Text style={styles.time}>{post.time}</Text>
-                </View>
-
-                {post.with && (
-                  <View style={styles.withContainer}>
-                    <IconButton
-                      // style={}
-                      icon="account-multiple"
-                      size={13}
-                    />
-                    <Text style={styles.withLabel}>with</Text>
-                    <Text style={styles.withValue}>{post.with}</Text>
-                  </View>
-                )}
+            <View style={styles.nameAndOptions}>
+              <View style={styles.nameContainer}>
+                <Text style={styles.customName}>{post.screenName}</Text>
+                <Text style={styles.atName}>{post.userName}</Text>
               </View>
 
-              {post.location && (
-                <View style={styles.locationContainer}>
+              <View style={styles.postOptions}>
+                <IconButton icon="dots-vertical" onPress={() => {}} />
+              </View>
+            </View>
+          </View>
+
+          <Text style={styles.postTitle}>{post.title}</Text>
+
+          <View style={styles.audioVisualContainer}>
+            <IconButton
+              icon="play-circle"
+              iconColor="indigo"
+              size={40}
+              onPress={() => {}}
+            />
+            <VoiceVisualizer data={generateRandomData()} />
+          </View>
+
+          <View style={styles.postDetailsContainer}>
+            <View style={styles.leftContainer}>
+              <View style={styles.timeContainer}>
+                <IconButton
+                  style={styles.time}
+                  icon={"clock-time-four-outline"}
+                  size={13}
+                />
+                <Text style={styles.time}>{post.time}</Text>
+              </View>
+
+              {post.with && (
+                <View style={styles.withContainer}>
                   <IconButton
-                    style={styles.locationIcon}
-                    icon="cellphone-marker"
+                    // style={}
+                    icon="account-multiple"
                     size={13}
                   />
-                  <Text style={styles.location}>{post.location}</Text>
+                  <Text style={styles.withLabel}>with</Text>
+                  <Text style={styles.withValue}>{post.with}</Text>
                 </View>
               )}
             </View>
 
-            <View style={styles.likeCommentContainer}>
-              <View style={styles.likeContainer}>
-                <MaterialCommunityIcons name="heart" color="indigo" size={18} />
-                <Text style={styles.likeText}>
-                  You & {post.likes} people Love this
-                </Text>
-              </View>
-
-              <View style={styles.commentContainer}>
-                <MaterialCommunityIcons
-                  name="comment"
-                  color="indigo"
-                  size={18}
+            {post.location && (
+              <View style={styles.locationContainer}>
+                <IconButton
+                  style={styles.locationIcon}
+                  icon="cellphone-marker"
+                  size={13}
                 />
-                <Text style={styles.commentText}>
-                  {post.comments}
-                  {post.comments === 1 ? " Comment" : " Comments"}
-                </Text>
+                <Text style={styles.location}>{post.location}</Text>
               </View>
+            )}
+          </View>
+
+          <View style={styles.likeCommentContainer}>
+            <View style={styles.likeContainer}>
+              <MaterialCommunityIcons name="heart" color="indigo" size={18} />
+              <Text style={styles.likeText}>
+                You & {post.likes} people Love this
+              </Text>
+            </View>
+
+            <View style={styles.commentContainer}>
+              <MaterialCommunityIcons name="comment" color="indigo" size={18} />
+              <Text style={styles.commentText}>
+                {post.comments}
+                {post.comments === 1 ? " Comment" : " Comments"}
+              </Text>
             </View>
           </View>
         </View>
@@ -156,16 +150,13 @@ const styles = StyleSheet.create({
     paddingLeft: 20,
     paddingRight: 20,
   },
-  allPostsContainer: {
-    flex: 1,
-    paddingBottom: 20,
-    borderBottomColor: "grey",
-    borderBottomWidth: 0.5,
-  },
   postContainer: {
     flex: 1,
     justifyContent: "flex-start",
     paddingTop: 15,
+    paddingBottom: 20,
+    borderBottomColor: "grey",
+    borderBottomWidth: 0.5,
   },
   nameAndOptions: {
     flexDirection: "row",
