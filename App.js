@@ -11,10 +11,8 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
 import HomeScreen from "./navigation/screens/HomeScreen";
-import ProfileScreen from "./navigation/screens/ProfileScreen";
+import SettingsScreen from "./SettingsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -27,6 +25,7 @@ export default function App() {
       >
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Home" component={HomeScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

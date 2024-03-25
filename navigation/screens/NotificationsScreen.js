@@ -79,9 +79,6 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 15,
   },
-  notificationText: {
-    fontSize: 16,
-  },
   notificationContainer: {
     flexDirection: "row",
     paddingTop: 15,

@@ -20,6 +20,7 @@ import AudioRecorder from "./AudioRecorder";
 import SearchScreen from "./SearchScreen";
 import { posts } from "./postsData";
 import NotificationsScreen from "./NotificationsScreen";
+import HeaderBanner from "../../HeaderBanner";
 
 const HomeScreen = ({ navigation }) => {
   const [index, setIndex] = useState(0);
@@ -49,22 +50,7 @@ const HomeScreen = ({ navigation }) => {
   return (
     <>
       <View style={styles.container}>
-        <View style={styles.headerBanner}>
-          <TouchableOpacity onPress={goBack}>
-            <Image
-              source={require("../../logoV3.png")}
-              style={styles.headerImage}
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-          <IconButton
-            icon="cog"
-            iconColor="grey"
-            onPress={() => {}}
-            style={styles.settingsBtn}
-          />
-        </View>
-
+        <HeaderBanner navigation={navigation} />
         {/* <AudioRecorder onClose={() => setIsRecording(false)} /> */}
 
         <BottomNavigation
@@ -99,51 +85,13 @@ const HomeScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  noShadow: {
-    shadowColor: "transparent",
-    shadowOpacity: 0,
-    shadowOffset: {
-      width: 0,
-      height: 0,
-    },
-    shadowRadius: 0,
-    elevation: 0,
-  },
   container: {
     flex: 1,
     backgroundColor: "#fff",
   },
-  headerBanner: {
-    height: 65,
-    marginTop: 25,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#fff",
-    flexDirection: "row",
-  },
-  headerImage: {
-    width: 175,
-    height: 70,
-    marginLeft: 93,
-    marginTop: 10,
-  },
-  settingsBtn: {
-    marginLeft: "auto",
-    marginRight: 15,
-  },
-  tabContent: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  allPostsContainer: {
-    flex: 1,
-    padding: 20,
-  },
-  postContainer: {
-    flex: 1,
-    justifyContent: "flex-start",
-    // gap: 200,
+  bottomNavBar: {
+    height: 60,
+    color: "transparent",
   },
   voiceRecorderIcon: {
     backgroundColor: "indigo",
@@ -152,10 +100,6 @@ const styles = StyleSheet.create({
     width: 50,
     paddingTop: 10,
     paddingLeft: 10,
-  },
-  bottomNavBar: {
-    height: 60,
-    color: "transparent",
   },
 });
 
