@@ -91,7 +91,7 @@ const PostContainer = ({ posts }) => {
                 <IconButton
                   style={styles.time}
                   icon={"clock-time-four-outline"}
-                  size={13}
+                  size={11}
                 />
                 <Text style={styles.time}>{post.time}</Text>
               </View>
@@ -101,10 +101,10 @@ const PostContainer = ({ posts }) => {
                   <IconButton
                     // style={}
                     icon="account-multiple"
-                    size={13}
+                    size={11}
                   />
                   <Text style={styles.withLabel}>with</Text>
-                  <Text style={styles.withValue}>{post.with}</Text>
+                  <Text style={styles.withValue}> {post.with}</Text>
                 </View>
               )}
             </View>
@@ -114,7 +114,7 @@ const PostContainer = ({ posts }) => {
                 <IconButton
                   style={styles.locationIcon}
                   icon="cellphone-marker"
-                  size={13}
+                  size={11}
                 />
                 <Text style={styles.location}>{post.location}</Text>
               </View>
@@ -218,11 +218,13 @@ const styles = StyleSheet.create({
   },
   withLabel: {
     color: "grey",
-    marginRight: 5, // Adjust as needed
+    marginRight: 0,
     marginHorizontal: -10,
+    fontSize: 11,
   },
   withValue: {
     color: "indigo",
+    fontSize: 11,
   },
   locationContainer: {
     flexDirection: "row",
@@ -231,12 +233,12 @@ const styles = StyleSheet.create({
   time: {
     color: "gray",
     flexDirection: "row",
-    fontSize: 13,
+    fontSize: 11,
     marginHorizontal: -1,
   },
   location: {
     color: "indigo",
-    fontSize: 13,
+    fontSize: 11,
     // marginRight: 20,
     // flexDirection: "row",
   },
