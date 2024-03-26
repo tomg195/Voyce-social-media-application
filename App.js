@@ -88,7 +88,6 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   loginInput: {
-    // paddingTop: 50,
     height: 40,
     borderColor: "silver",
     borderWidth: 1,
@@ -100,7 +99,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "70%",
-    // marginTop: 20,
   },
   button: {
     backgroundColor: "indigo",

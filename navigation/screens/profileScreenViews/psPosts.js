@@ -1,19 +1,8 @@
 import React, { useRef } from "react";
 import { IconButton } from "react-native-paper";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
-import { Directions } from "react-native-gesture-handler";
 
 const VoiceVisualizer = () => {
   // Simulated data for the visualizer
@@ -181,7 +170,6 @@ const styles = StyleSheet.create({
   },
   postContainer: {
     flexDirection: "row",
-    // paddingRight: 20,
   },
   postTitle: {
     marginVertical: 10,
@@ -190,21 +178,14 @@ const styles = StyleSheet.create({
   audioVisualContainer: {
     flex: 1,
     flexDirection: "row",
-    // marginRight: 10,
-    // justifyContent: "space-between",
-    // alignItems: "flex-start",
-    // paddingRight: 20,
   },
   visualizerContainer: {
     flex: 1,
     width: 450,
-    // backgroundColor: "red",
   },
   engagements: {
     flexDirection: "row",
     paddingRight: 20,
-    // alignItems: "flex-start",
-    // justifyContent: "space-around",
   },
   likesContainer: {
     flexDirection: "row",

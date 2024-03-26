@@ -1,17 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { BottomNavigation, IconButton } from "react-native-paper";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
-  ScrollView,
-} from "react-native";
-import { useNavigation, NavigationContainer } from "@react-navigation/native";
+import { StyleSheet, View, TouchableOpacity, StatusBar } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
 import PostContainer from "./feedContent/PostContainer";

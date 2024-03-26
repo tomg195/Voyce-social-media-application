@@ -5,9 +5,6 @@ import {
   View,
   Image,
   TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
   ScrollView,
 } from "react-native";
 import { IconButton } from "react-native-paper";
@@ -106,7 +103,6 @@ const styles = StyleSheet.create({
   },
   text: {
     fontSize: 13,
-    // flexDirection: "row",
   },
 
   icon: {

@@ -1,15 +1,5 @@
 import React from "react";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, TextInput, ScrollView } from "react-native";
 import { IconButton, Avatar, Card, Title } from "react-native-paper";
 import HeaderBanner from "./HeaderBanner";
 

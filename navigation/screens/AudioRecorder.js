@@ -1,19 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { BottomNavigation, IconButton } from "react-native-paper";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
-  ScrollView,
-  Button,
-} from "react-native";
-import { useNavigation, NavigationContainer } from "@react-navigation/native";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { StyleSheet, Text, View, Button } from "react-native";
 
 const AudioRecorder = ({ onClose }) => {
   const [recording, setRecording] = useState();

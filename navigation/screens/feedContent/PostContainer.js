@@ -1,16 +1,6 @@
 import React, { useRef } from "react";
 import { IconButton } from "react-native-paper";
-import {
-  StyleSheet,
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  StatusBar,
-  TextInput,
-  Animated,
-  ScrollView,
-} from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import Svg, { Rect } from "react-native-svg";
 
@@ -163,7 +153,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
   },
-  nameContainer: {},
   postOptions: {
     position: "absolute",
     marginLeft: 210,
@@ -201,7 +190,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    // marginVertical: 5,
   },
   leftContainer: {
     flexDirection: "row",
@@ -210,7 +198,6 @@ const styles = StyleSheet.create({
   timeContainer: {
     flexDirection: "row",
     alignItems: "center",
-    // marginRight: 15, // Adjust as needed
   },
   withContainer: {
     flexDirection: "row",
@@ -239,8 +226,6 @@ const styles = StyleSheet.create({
   location: {
     color: "indigo",
     fontSize: 11,
-    // marginRight: 20,
-    // flexDirection: "row",
   },
   locationIcon: {
     marginLeft: 5,

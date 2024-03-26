@@ -64,25 +64,6 @@ const ProfileScreen = ({ navigation, userPosts }) => {
     </TouchableOpacity>
   );
 
-  // const MyTabBarItem = ({ route, onPress, activeIndex }) => (
-  //   <TouchableOpacity
-  //     key={route.key}
-  //     style={styles.tabItem}
-  //     onPress={() => onPress(route.key)}
-  //   >
-  //     <Text
-  //       style={[
-  //         styles.tabText,
-  //         activeIndex === route.key
-  //           ? styles.activeTabText
-  //           : styles.inactiveTabText,
-  //       ]}
-  //     >
-  //       {route.title}
-  //     </Text>
-  //   </TouchableOpacity>
-  // );
-
   return (
     <ScrollView style={styles.container}>
       <View style={styles.profileInfo}>
@@ -182,7 +163,6 @@ const styles = StyleSheet.create({
   },
   tabText: {
     fontSize: 19,
-    // color: "grey",
   },
   activeTabText: {
     color: "indigo",
